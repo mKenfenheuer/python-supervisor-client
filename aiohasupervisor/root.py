@@ -10,6 +10,7 @@ from .backups import BackupsClient
 from .client import _SupervisorClient
 from .const import DEFAULT_UNIX_SOCKET_API_HOST
 from .discovery import DiscoveryClient
+from .hardware import HardwareClient
 from .homeassistant import HomeAssistantClient
 from .host import HostClient
 from .ingress import IngressClient
@@ -65,6 +66,7 @@ class SupervisorClient:
         self._resolution = ResolutionClient(self._client)
         self._store = StoreClient(self._client)
         self._supervisor = SupervisorManagementClient(self._client)
+        self._hardware = HardwareClient(self._client)
         self._homeassistant = HomeAssistantClient(self._client)
         self._ingress = IngressClient(self._client)
         self._time = TimeClient(self._client)
@@ -108,6 +110,11 @@ class SupervisorClient:
     def network(self) -> NetworkClient:
         """Get network component client."""
         return self._network
+
+    @property
+    def hardware(self) -> HardwareClient:
+        """Get hardware component client."""
+        return self._hardware
 
     @property
     def time(self) -> TimeClient:

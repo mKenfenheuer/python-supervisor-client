@@ -263,6 +263,8 @@ class InstalledAddonComplete(
     system_managed: bool
     system_managed_config_entry: str | None
     log_format: AddonLogFormat | str
+    # Added in Supervisor 2026.11, older versions don't report it
+    gpu: bool = False
 
 
 @dataclass(frozen=True, slots=True)

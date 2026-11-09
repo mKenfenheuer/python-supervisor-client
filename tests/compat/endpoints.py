@@ -158,6 +158,8 @@ ENDPOINTS = [
         "store/repositories/{repository}",
         lambda c, p: c.store.repository_info(p[0]),
     ),
+    # Hardware
+    Endpoint("GET", "hardware/gpu", lambda c, _: c.hardware.gpu()),
     # Supervisor
     Endpoint("GET", "supervisor/ping", lambda c, _: c.supervisor.ping()),
     Endpoint("GET", "supervisor/info", lambda c, _: c.supervisor.info()),

@@ -1,0 +1,31 @@
+{
+  "result": "ok",
+  "data": {
+    "gpus": [
+      {
+        "address": "0000:01:00.0",
+        "vendor": "nvidia",
+        "name": "NVIDIA GeForce RTX 3090",
+        "driver": "nvidia",
+        "driver_version": "615.78.08",
+        "utilization": 7.0,
+        "memory_used": 2982150144,
+        "memory_total": 25769803776,
+        "temperature": 34.0,
+        "power": 16.37
+      },
+      {
+        "address": "0000:00:02.0",
+        "vendor": "intel",
+        "name": "Intel GPU [8086:46a6]",
+        "driver": "i915",
+        "driver_version": "6.18.60-haos",
+        "utilization": null,
+        "memory_used": null,
+        "memory_total": null,
+        "temperature": null,
+        "power": null
+      }
+    ]
+  }
+}

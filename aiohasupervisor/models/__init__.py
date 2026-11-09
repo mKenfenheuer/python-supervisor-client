@@ -56,6 +56,7 @@ from aiohasupervisor.models.discovery import (
     Discovery,
     DiscoveryConfig,
 )
+from aiohasupervisor.models.hardware import GPU, HardwareGPU
 from aiohasupervisor.models.homeassistant import (
     HomeAssistantInfo,
     HomeAssistantOptions,
@@ -169,6 +170,7 @@ from aiohasupervisor.models.supervisor import (
 from aiohasupervisor.models.time import TimeConfig, TimeInfo, TimeOptions
 
 __all__ = [
+    "GPU",
     "LOCATION_CLOUD_BACKUP",
     "LOCATION_LOCAL_STORAGE",
     "AccessPoint",
@@ -223,6 +225,7 @@ __all__ = [
     "FullRestoreOptions",
     "GreenInfo",
     "GreenOptions",
+    "HardwareGPU",
     "HomeAssistantInfo",
     "HomeAssistantOptions",
     "HomeAssistantRebuildOptions",
