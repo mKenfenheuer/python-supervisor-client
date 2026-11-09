@@ -74,6 +74,8 @@ async def test_addons_info(
     assert addon.system_managed_config_entry is None
     assert addon.log_format is AddonLogFormat.PLAIN
     assert addon.startup == AddonStartup.SERVICES
+    # Not reported by older Supervisor versions
+    assert addon.gpu is False
 
 
 async def test_addons_info_unknown_log_format(
