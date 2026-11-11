@@ -1,0 +1,22 @@
+{
+  "result": "ok",
+  "data": {
+    "version": "13.0",
+    "version_latest": "13.1",
+    "version_pending": null,
+    "update_available": true,
+    "board": "generic-x86-64",
+    "variant": "nvidia",
+    "variants": ["nvidia", "nvidia-legacy"],
+    "boot": "B",
+    "data_disk": "BJTD4R-0xaabbccdd",
+    "boot_slots": {
+      "A": { "state": "inactive", "status": "good", "version": null },
+      "B": {
+        "state": "booted",
+        "status": "good",
+        "version": "13.0"
+      }
+    }
+  }
+}

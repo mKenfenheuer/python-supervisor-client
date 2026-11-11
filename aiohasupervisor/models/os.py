@@ -1,10 +1,10 @@
 """Models for OS APIs."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
 from pathlib import PurePath
 
-from .base import Options, Request, ResponseData
+from .base import DEFAULT, Options, Request, ResponseData
 
 # --- ENUMS ----
 
@@ -48,13 +48,21 @@ class OSInfo(ResponseData):
     boot: str | None
     data_disk: str | None
     boot_slots: dict[str, BootSlot]
+    # OS variant of the running version (e.g. nvidia), None for the plain OS
+    variant: str | None = None
+    variants: list[str] = field(default_factory=list)
 
 
 @dataclass(frozen=True, slots=True)
 class OSUpdate(Request):
-    """OSUpdate model."""
+    """OSUpdate model.
+
+    Without variant the update keeps the OS variant, None switches to the
+    plain OS.
+    """
 
     version: str | None = None
+    variant: str | None = DEFAULT  # type: ignore[assignment]
 
 
 @dataclass(frozen=True, slots=True)

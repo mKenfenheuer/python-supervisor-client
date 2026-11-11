@@ -39,6 +39,22 @@ async def test_os_info(
     assert info.boot_slots["B"].state == "booted"
     assert info.boot_slots["B"].status == "good"
     assert info.boot_slots["B"].version == "13.0"
+    assert info.variant is None
+    assert info.variants == []
+
+
+async def test_os_info_variant(
+    responses: aiointercept, supervisor_client: SupervisorClient
+) -> None:
+    """Test OS info API with an OS variant."""
+    responses.get(
+        f"{SUPERVISOR_URL}/os/info",
+        status=200,
+        body=load_fixture("os_info_variant.json"),
+    )
+    info = await supervisor_client.os.info()
+    assert info.variant == "nvidia"
+    assert info.variants == ["nvidia", "nvidia-legacy"]
 
 
 @pytest.mark.parametrize("options", [None, OSUpdate(version="13.0")])
@@ -51,6 +67,19 @@ async def test_os_update(
     responses.post(f"{SUPERVISOR_URL}/os/update", status=200)
     assert await supervisor_client.os.update(options) is None
     assert responses.requests.keys() == {("POST", URL(f"{SUPERVISOR_URL}/os/update"))}
+
+
+@pytest.mark.parametrize(
+    ("options", "body"),
+    [
+        (OSUpdate(version="19.0"), {"version": "19.0"}),
+        (OSUpdate(variant="nvidia"), {"variant": "nvidia"}),
+        (OSUpdate(variant=None), {"variant": None}),
+    ],
+)
+def test_os_update_variant_request(options: OSUpdate, body: dict) -> None:
+    """Test the variant is only sent when set, None switches to the plain OS."""
+    assert options.to_dict() == body
 
 
 async def test_os_swap_info(
