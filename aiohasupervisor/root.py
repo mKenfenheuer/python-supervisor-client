@@ -19,6 +19,7 @@ from .models.root import AvailableUpdate, AvailableUpdates, RootInfo
 from .mounts import MountsClient
 from .network import NetworkClient
 from .os import OSClient
+from .plugins import PluginsClient
 from .resolution import ResolutionClient
 from .store import StoreClient
 from .supervisor import SupervisorManagementClient
@@ -70,6 +71,7 @@ class SupervisorClient:
         self._homeassistant = HomeAssistantClient(self._client)
         self._ingress = IngressClient(self._client)
         self._time = TimeClient(self._client)
+        self._plugins = PluginsClient(self._client)
 
     @property
     def addons(self) -> AddonsClient:
@@ -120,6 +122,11 @@ class SupervisorClient:
     def time(self) -> TimeClient:
         """Get time component client."""
         return self._time
+
+    @property
+    def plugins(self) -> PluginsClient:
+        """Get plugins component client."""
+        return self._plugins
 
     @property
     def host(self) -> HostClient:
