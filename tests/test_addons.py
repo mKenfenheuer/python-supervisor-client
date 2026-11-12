@@ -299,6 +299,24 @@ async def test_addons_stats(
     assert stats.cpu_percent == 0
     assert stats.memory_usage == 24588288
     assert stats.network_rx == 1717120021
+    assert stats.gpu_memory_usage is None
+    assert stats.gpu_percent is None
+
+
+async def test_addons_stats_gpu(
+    responses: aiointercept, supervisor_client: SupervisorClient
+) -> None:
+    """Test addon stats API with the GPU usage of the container."""
+    responses.get(
+        f"{SUPERVISOR_URL}/addons/local_ha_llm/stats",
+        status=200,
+        body=load_fixture("addon_stats_gpu.json"),
+    )
+    stats = await supervisor_client.addons.addon_stats("local_ha_llm")
+    assert stats.gpu_memory_usage == 2405433344
+    assert stats.gpu_memory_limit == 6442450944
+    assert stats.gpu_memory_percent == 37.34
+    assert stats.gpu_percent == 42.0
 
 
 async def test_addons_serialize_by_alias() -> None:
