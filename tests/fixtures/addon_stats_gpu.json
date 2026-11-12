@@ -1,0 +1,17 @@
+{
+  "result": "ok",
+  "data": {
+    "cpu_percent": 1.2,
+    "memory_usage": 524288000,
+    "memory_limit": 3899138048,
+    "memory_percent": 13.45,
+    "network_rx": 1717120021,
+    "network_tx": 1036769,
+    "blk_read": 0,
+    "blk_write": 0,
+    "gpu_memory_usage": 2405433344,
+    "gpu_memory_limit": 6442450944,
+    "gpu_memory_percent": 37.34,
+    "gpu_percent": 42.0
+  }
+}

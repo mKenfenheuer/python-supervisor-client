@@ -100,3 +100,8 @@ class ContainerStats(ResponseData):
     network_tx: int
     blk_read: int
     blk_write: int
+    # Usage of the GPUs of the container, None if it uses no GPU
+    gpu_memory_usage: int | None = None
+    gpu_memory_limit: int | None = None
+    gpu_memory_percent: float | None = None
+    gpu_percent: float | None = None
